@@ -1,7 +1,7 @@
 package com.prueba.dev.clientes.infrastructure.controller;
 
 import com.prueba.dev.clientes.application.dto.request.ClienteRequest;
-import com.prueba.dev.clientes.application.dto.GenericResponse;
+import com.prueba.dev.clientes.application.dto.response.GenericResponse;
 import com.prueba.dev.clientes.application.dto.ClienteDTO;
 import com.prueba.dev.clientes.application.service.ClienteApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -42,8 +42,7 @@ public class PersonaApplicationService {
                 request.getGenero(),
                 request.getIdentificacion(),
                 request.getDireccion(),
-                request.getTelefono(),
-                request.getFechaNacimiento()
+                request.getTelefono()
         );
 
         Persona savedPersona = personaService.createPersona(persona);
@@ -56,8 +55,7 @@ public class PersonaApplicationService {
                 savedPersona.getEdad(),
                 savedPersona.getIdentificacion(),
                 savedPersona.getDireccion(),
-                savedPersona.getTelefono(),
-                savedPersona.getFechaNacimiento()
+                savedPersona.getTelefono()
         );
     }
 
@@ -77,8 +75,7 @@ public class PersonaApplicationService {
                 persona.getEdad(),
                 persona.getIdentificacion(),
                 persona.getDireccion(),
-                persona.getTelefono(),
-                persona.getFechaNacimiento()
+                persona.getTelefono()
         );
     }
 
@@ -98,8 +95,7 @@ public class PersonaApplicationService {
                         persona.getEdad(),
                         persona.getIdentificacion(),
                         persona.getDireccion(),
-                        persona.getTelefono(),
-                        persona.getFechaNacimiento()
+                        persona.getTelefono()
                 ))
                 .collect(Collectors.toList());
     }
@@ -119,8 +115,7 @@ public class PersonaApplicationService {
                 request.getGenero(),
                 request.getIdentificacion(),
                 request.getDireccion(),
-                request.getTelefono(),
-                request.getFechaNacimiento()
+                request.getTelefono()
         );
 
         Persona updatedPersona = personaService.updatePersona(id, persona);
@@ -133,8 +128,7 @@ public class PersonaApplicationService {
                 updatedPersona.getEdad(),
                 updatedPersona.getIdentificacion(),
                 updatedPersona.getDireccion(),
-                updatedPersona.getTelefono(),
-                updatedPersona.getFechaNacimiento()
+                updatedPersona.getTelefono()
         );
     }
 

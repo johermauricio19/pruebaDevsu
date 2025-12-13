@@ -20,10 +20,10 @@ public class Cliente {
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
 
-    @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
-    @Column(name = "contraseña", nullable = false, length = 255)
-    private String contraseña;
+    @NotBlank(message = "La clave es obligatoria")
+    @Size(min = 8, message = "La clave debe tener al menos 8 caracteres")
+    @Column(name = "clave", nullable = false, length = 255)
+    private String clave;
 
     @NotBlank(message = "El estado es obligatorio")
     @Pattern(regexp = "ACTIVO|INACTIVO|BLOQUEADO", message = "El estado debe ser ACTIVO, INACTIVO o BLOQUEADO")
@@ -34,9 +34,9 @@ public class Cliente {
     public Cliente() {}
 
     // Constructor con parámetros
-    public Cliente(Persona persona, String contraseña, String estado) {
+    public Cliente(Persona persona, String clave, String estado) {
         this.persona = persona;
-        this.contraseña = contraseña;
+        this.clave = clave;
         this.estado = estado;
     }
 
@@ -57,12 +57,12 @@ public class Cliente {
         this.persona = persona;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getEstado() {

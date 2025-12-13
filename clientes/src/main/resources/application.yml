@@ -5,9 +5,9 @@ spring:
   application:
     name: clientes-service
   datasource:
-    url: jdbc:mysql://localhost:3306/pruebadev
+    url: jdbc:mysql://localhost:3306/pruebadev?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
-    password: password
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

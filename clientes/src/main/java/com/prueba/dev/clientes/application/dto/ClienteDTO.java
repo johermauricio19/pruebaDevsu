@@ -1,7 +1,5 @@
 package com.prueba.dev.clientes.application.dto;
 
-import java.time.LocalDate;
-
 /**
  * DTO para representar un cliente en las operaciones CRUD.
  */
@@ -14,14 +12,13 @@ public class ClienteDTO {
     private String identificacion;
     private String direccion;
     private String telefono;
-    private LocalDate fechaNacimiento;
     private Long personaId;
-    private String contrasena;
+    private String clave;
     private String estado;
 
     public ClienteDTO() {}
 
-    public ClienteDTO(Long id, String nombre, String genero, Integer edad, String identificacion, String direccion, String telefono, LocalDate fechaNacimiento, Long personaId, String contrasena, String estado) {
+    public ClienteDTO(Long id, String nombre, String genero, Integer edad, String identificacion, String direccion, String telefono, Long personaId, String clave, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;
@@ -29,15 +26,14 @@ public class ClienteDTO {
         this.identificacion = identificacion;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.fechaNacimiento = fechaNacimiento;
         this.personaId = personaId;
-        this.contrasena = contrasena;
+        this.clave = clave;
         this.estado = estado;
     }
 
-    public ClienteDTO(Long personaId, String contrasena, String estado) {
+    public ClienteDTO(Long personaId, String clave, String estado) {
         this.personaId = personaId;
-        this.contrasena = contrasena;
+        this.clave = clave;
         this.estado = estado;
     }
 
@@ -97,14 +93,6 @@ public class ClienteDTO {
         this.telefono = telefono;
     }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     public Long getPersonaId() {
         return personaId;
     }
@@ -113,12 +101,12 @@ public class ClienteDTO {
         this.personaId = personaId;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getEstado() {

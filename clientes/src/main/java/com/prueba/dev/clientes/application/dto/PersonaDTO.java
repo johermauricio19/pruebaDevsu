@@ -1,7 +1,5 @@
 package com.prueba.dev.clientes.application.dto;
 
-import java.time.LocalDate;
-
 /**
  * DTO para representar una persona en las operaciones CRUD.
  */
@@ -14,11 +12,10 @@ public class PersonaDTO {
     private String identificacion;
     private String direccion;
     private String telefono;
-    private LocalDate fechaNacimiento;
 
     public PersonaDTO() {}
 
-    public PersonaDTO(Long id, String nombre, String genero, Integer edad, String identificacion, String direccion, String telefono, LocalDate fechaNacimiento) {
+    public PersonaDTO(Long id, String nombre, String genero, Integer edad, String identificacion, String direccion, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;
@@ -26,17 +23,15 @@ public class PersonaDTO {
         this.identificacion = identificacion;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public PersonaDTO(String nombre, Integer edad, String genero, String identificacion, String direccion, String telefono, LocalDate fechaNacimiento) {
+    public PersonaDTO(String nombre, Integer edad, String genero, String identificacion, String direccion, String telefono) {
         this.nombre = nombre;
         this.edad = edad;
         this.genero = genero;
         this.identificacion = identificacion;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     public Long getId() {
@@ -93,13 +88,5 @@ public class PersonaDTO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 }

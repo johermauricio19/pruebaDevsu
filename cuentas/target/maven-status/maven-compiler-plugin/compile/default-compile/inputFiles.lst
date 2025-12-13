@@ -1,4 +1,3 @@
-/workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/GenericResponse.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/infrastructure/controller/CuentaController.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/domain/model/Cuenta.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/service/CuentaApplicationService.java
@@ -13,16 +12,15 @@
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/config/GlobalExceptionHandler.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/domain/exception/CuentaNotFoundException.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/domain/port/CuentaRepositoryPort.java
+/workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/response/GenericResponse.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/domain/service/MovimientoService.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/infrastructure/persistence/jpa/CuentaRepository.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/EstadoCuentaDTO.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/infrastructure/controller/MovimientoController.java
-/workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/response/MovimientoResponse.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/infrastructure/persistence/adapter/MovimientoRepositoryAdapter.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/domain/exception/SaldoInsuficienteException.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/domain/exception/MovimientoNotFoundException.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/request/MovimientoRequest.java
-/workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/response/CuentaResponse.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/service/MovimientoApplicationService.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/request/CuentaRequest.java
 /workspaces/pruebaDevsu/cuentas/src/main/java/com/prueba/dev/cuentas/application/dto/CuentaConMovimientosDTO.java

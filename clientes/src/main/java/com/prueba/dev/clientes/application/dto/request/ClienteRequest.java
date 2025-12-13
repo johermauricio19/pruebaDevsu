@@ -10,9 +10,9 @@ public class ClienteRequest {
     @NotNull(message = "El ID de la persona es obligatorio")
     private Long personaId;
 
-    @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
-    private String contraseña;
+    @NotBlank(message = "La clave es obligatoria")
+    @Size(min = 8, message = "La clave debe tener al menos 8 caracteres")
+    private String clave;
 
     @NotBlank(message = "El estado es obligatorio")
     @Pattern(regexp = "ACTIVO|INACTIVO|BLOQUEADO", message = "El estado debe ser ACTIVO, INACTIVO o BLOQUEADO")
@@ -22,9 +22,9 @@ public class ClienteRequest {
     public ClienteRequest() {}
 
     // Constructor con parámetros
-    public ClienteRequest(Long personaId, String contraseña, String estado) {
+    public ClienteRequest(Long personaId, String clave, String estado) {
         this.personaId = personaId;
-        this.contraseña = contraseña;
+        this.clave = clave;
         this.estado = estado;
     }
 
@@ -37,12 +37,12 @@ public class ClienteRequest {
         this.personaId = personaId;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getEstado() {

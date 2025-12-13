@@ -1,4 +1,4 @@
-package com.prueba.dev.clientes.application.dto;
+package com.prueba.dev.clientes.application.dto.response;
 
 /**
  * Respuesta genérica para todas las operaciones de la API.

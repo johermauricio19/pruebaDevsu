@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS cliente;
 CREATE TABLE cliente (
     cliente_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     persona_id BIGINT NOT NULL,
-    contraseña VARCHAR(255) NOT NULL,
+    clave VARCHAR(255) NOT NULL,
     estado VARCHAR(20) DEFAULT 'ACTIVO' 
         CHECK (estado IN ('ACTIVO', 'INACTIVO', 'BLOQUEADO')),
 
@@ -42,7 +42,6 @@ CREATE TABLE cliente (
 
 -- Índice para mejorar consultas por persona
 CREATE INDEX idx_cliente_persona_id ON cliente (persona_id);
-
 
 -- ============================================================
 -- TABLE: cuenta
@@ -67,7 +66,6 @@ CREATE TABLE cuenta (
 -- Índices recomendados por rendimiento
 CREATE INDEX idx_cuenta_cliente_id ON cuenta (cliente_id);
 CREATE INDEX idx_cuenta_numero ON cuenta (numero_cuenta);
-
 
 -- ============================================================
 -- TABLE: movimiento

@@ -1,6 +1,6 @@
 package com.prueba.dev.clientes.integration;
 
-import com.prueba.dev.clientes.application.dto.GenericResponse;
+import com.prueba.dev.clientes.application.dto.response.GenericResponse;
 import com.prueba.dev.clientes.application.dto.PersonaDTO;
 import com.prueba.dev.clientes.application.dto.ClienteDTO;
 import org.junit.jupiter.api.Test;
