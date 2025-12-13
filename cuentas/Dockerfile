@@ -1,5 +1,5 @@
-# Usar imagen base de Maven para construir
-FROM maven:3.9.4-eclipse-temurin-21 AS build
+# Usar imagen base de OpenJDK
+FROM openjdk:11
 
 # Establecer directorio de trabajo
 WORKDIR /app
@@ -8,20 +8,14 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
+# Instalar Maven
+RUN apt-get update && apt-get install -y maven
+
 # Construir la aplicación
 RUN mvn clean package -DskipTests
-
-# Usar imagen base de OpenJDK para ejecutar
-FROM eclipse-temurin:21-jdk
-
-# Establecer directorio de trabajo
-WORKDIR /app
-
-# Copiar el JAR construido
-COPY --from=build /app/target/cuentas-1.0.0.jar app.jar
 
 # Exponer puerto
 EXPOSE 8081
 
 # Comando para ejecutar la aplicación
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "target/cuentas-1.0.0.jar"]
