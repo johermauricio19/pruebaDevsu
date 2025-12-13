@@ -5,15 +5,19 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.prueba.dev</groupId>
-        <artifactId>microservices-parent</artifactId>
-        <version>1.0.0</version>
-    </parent>
-
+    <groupId>com.prueba.dev</groupId>
     <artifactId>clientes</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
     <name>Clientes Microservice</name>
     <description>Microservicio para gestión de clientes y personas</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
