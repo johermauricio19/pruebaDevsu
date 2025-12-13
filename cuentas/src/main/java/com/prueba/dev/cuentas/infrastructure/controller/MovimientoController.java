@@ -1,7 +1,7 @@
 package com.prueba.dev.cuentas.infrastructure.controller;
 
 import com.prueba.dev.cuentas.application.dto.request.MovimientoRequest;
-import com.prueba.dev.cuentas.application.dto.GenericResponse;
+import com.prueba.dev.cuentas.application.dto.response.GenericResponse;
 import com.prueba.dev.cuentas.application.dto.MovimientoDTO;
 import com.prueba.dev.cuentas.application.service.MovimientoApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;

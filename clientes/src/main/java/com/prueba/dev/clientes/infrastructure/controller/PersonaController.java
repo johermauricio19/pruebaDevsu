@@ -1,7 +1,7 @@
 package com.prueba.dev.clientes.infrastructure.controller;
 
 import com.prueba.dev.clientes.application.dto.request.PersonaRequest;
-import com.prueba.dev.clientes.application.dto.GenericResponse;
+import com.prueba.dev.clientes.application.dto.response.GenericResponse;
 import com.prueba.dev.clientes.application.dto.PersonaDTO;
 import com.prueba.dev.clientes.application.service.PersonaApplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;

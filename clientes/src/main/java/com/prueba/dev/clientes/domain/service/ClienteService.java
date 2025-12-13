@@ -77,7 +77,7 @@ public class ClienteService {
         logger.info("Actualizando cliente con ID: {}", id);
 
         Cliente existingCliente = getClienteById(id);
-        existingCliente.setContraseña(cliente.getContraseña());
+        existingCliente.setClave(cliente.getClave());
         existingCliente.setEstado(cliente.getEstado());
 
         Cliente updatedCliente = clienteRepository.save(existingCliente);

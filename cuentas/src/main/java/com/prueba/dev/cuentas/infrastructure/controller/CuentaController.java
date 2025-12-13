@@ -1,7 +1,7 @@
 package com.prueba.dev.cuentas.infrastructure.controller;
 
 import com.prueba.dev.cuentas.application.dto.request.CuentaRequest;
-import com.prueba.dev.cuentas.application.dto.GenericResponse;
+import com.prueba.dev.cuentas.application.dto.response.GenericResponse;
 import com.prueba.dev.cuentas.application.dto.CuentaDTO;
 import com.prueba.dev.cuentas.application.dto.EstadoCuentaDTO;
 import com.prueba.dev.cuentas.application.dto.MovimientoDTO;

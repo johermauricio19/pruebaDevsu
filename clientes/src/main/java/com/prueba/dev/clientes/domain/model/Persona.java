@@ -3,8 +3,6 @@ package com.prueba.dev.clientes.domain.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
-import java.time.LocalDate;
-
 /**
  * Entidad que representa a una persona en el sistema.
  * Contiene información básica de identificación y contacto.
@@ -45,23 +43,17 @@ public class Persona {
     @Column(name = "telefono", length = 20)
     private String telefono;
 
-    @NotNull(message = "La fecha de nacimiento es obligatoria")
-    @Past(message = "La fecha de nacimiento debe ser en el pasado")
-    @Column(name = "fecha_nacimiento", nullable = false)
-    private LocalDate fechaNacimiento;
-
     // Constructor vacío para JPA
     public Persona() {}
 
     // Constructor con parámetros
-    public Persona(String nombre, Integer edad, String genero, String identificacion, String direccion, String telefono, LocalDate fechaNacimiento) {
+    public Persona(String nombre, Integer edad, String genero, String identificacion, String direccion, String telefono) {
         this.nombre = nombre;
         this.edad = edad;
         this.genero = genero;
         this.identificacion = identificacion;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     // Getters y Setters
@@ -119,13 +111,5 @@ public class Persona {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 }

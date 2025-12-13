@@ -6,8 +6,8 @@ com/prueba/dev/clientes/application/dto/request/PersonaRequest.class
 com/prueba/dev/clientes/application/service/ClienteApplicationService.class
 com/prueba/dev/clientes/domain/port/PersonaRepositoryPort.class
 com/prueba/dev/clientes/infrastructure/persistence/jpa/ClienteRepository.class
-com/prueba/dev/clientes/application/dto/GenericResponse.class
 com/prueba/dev/clientes/domain/service/PersonaService.class
+com/prueba/dev/clientes/application/dto/response/GenericResponse.class
 com/prueba/dev/clientes/domain/service/ClienteService.class
 com/prueba/dev/clientes/domain/port/ClienteRepositoryPort.class
 com/prueba/dev/clientes/ClientsApplication.class

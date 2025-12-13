@@ -2,8 +2,6 @@ package com.prueba.dev.clientes.application.dto.request;
 
 import jakarta.validation.constraints.*;
 
-import java.time.LocalDate;
-
 /**
  * DTO para la solicitud de creación/actualización de una persona.
  */
@@ -30,22 +28,17 @@ public class PersonaRequest {
     @Size(max = 20, message = "El teléfono no puede exceder 20 caracteres")
     private String telefono;
 
-    @NotNull(message = "La fecha de nacimiento es obligatoria")
-    @Past(message = "La fecha de nacimiento debe ser en el pasado")
-    private LocalDate fechaNacimiento;
-
     // Constructor vacío
     public PersonaRequest() {}
 
     // Constructor con parámetros
-    public PersonaRequest(String nombre, Integer edad, String genero, String identificacion, String direccion, String telefono, LocalDate fechaNacimiento) {
+    public PersonaRequest(String nombre, Integer edad, String genero, String identificacion, String direccion, String telefono) {
         this.nombre = nombre;
         this.edad = edad;
         this.genero = genero;
         this.identificacion = identificacion;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     // Getters y Setters
@@ -95,13 +88,5 @@ public class PersonaRequest {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 }

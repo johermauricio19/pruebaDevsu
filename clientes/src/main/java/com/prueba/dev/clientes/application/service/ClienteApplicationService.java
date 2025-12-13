@@ -41,7 +41,7 @@ public class ClienteApplicationService {
         logger.info("Creando cliente para persona ID: {}", request.getPersonaId());
 
         Persona persona = personaService.getPersonaById(request.getPersonaId());
-        Cliente cliente = new Cliente(persona, request.getContraseña(), request.getEstado());
+        Cliente cliente = new Cliente(persona, request.getClave(), request.getEstado());
 
         Cliente savedCliente = clienteService.createCliente(cliente);
         logger.info("Cliente creado exitosamente con ID: {}", savedCliente.getId());
@@ -54,9 +54,8 @@ public class ClienteApplicationService {
                 savedCliente.getPersona().getIdentificacion(),
                 savedCliente.getPersona().getDireccion(),
                 savedCliente.getPersona().getTelefono(),
-                savedCliente.getPersona().getFechaNacimiento(),
                 savedCliente.getPersona().getId(),
-                savedCliente.getContraseña(),
+                savedCliente.getClave(),
                 savedCliente.getEstado()
         );
     }
@@ -78,9 +77,8 @@ public class ClienteApplicationService {
                 cliente.getPersona().getIdentificacion(),
                 cliente.getPersona().getDireccion(),
                 cliente.getPersona().getTelefono(),
-                cliente.getPersona().getFechaNacimiento(),
                 cliente.getPersona().getId(),
-                cliente.getContraseña(),
+                cliente.getClave(),
                 cliente.getEstado()
         );
     }
@@ -102,9 +100,8 @@ public class ClienteApplicationService {
                         cliente.getPersona().getIdentificacion(),
                         cliente.getPersona().getDireccion(),
                         cliente.getPersona().getTelefono(),
-                        cliente.getPersona().getFechaNacimiento(),
                         cliente.getPersona().getId(),
-                        cliente.getContraseña(),
+                        cliente.getClave(),
                         cliente.getEstado()
                 ))
                 .collect(Collectors.toList());
@@ -120,7 +117,7 @@ public class ClienteApplicationService {
         logger.info("Actualizando cliente con ID: {}", id);
 
         Persona persona = personaService.getPersonaById(request.getPersonaId());
-        Cliente cliente = new Cliente(persona, request.getContraseña(), request.getEstado());
+        Cliente cliente = new Cliente(persona, request.getClave(), request.getEstado());
 
         Cliente updatedCliente = clienteService.updateCliente(id, cliente);
         logger.info("Cliente actualizado exitosamente con ID: {}", updatedCliente.getId());
@@ -133,9 +130,8 @@ public class ClienteApplicationService {
                 updatedCliente.getPersona().getIdentificacion(),
                 updatedCliente.getPersona().getDireccion(),
                 updatedCliente.getPersona().getTelefono(),
-                updatedCliente.getPersona().getFechaNacimiento(),
                 updatedCliente.getPersona().getId(),
-                updatedCliente.getContraseña(),
+                updatedCliente.getClave(),
                 updatedCliente.getEstado()
         );
     }
