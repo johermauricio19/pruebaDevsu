@@ -30,6 +30,9 @@ public class Cliente {
     @Column(name = "estado", nullable = false, length = 20)
     private String estado;
 
+    @Column(name = "numero_cuentas", nullable = false, columnDefinition = "INT DEFAULT 0")
+    private Integer numeroCuentas = 0;
+
     // Constructor vacío para JPA
     public Cliente() {}
 
@@ -38,6 +41,7 @@ public class Cliente {
         this.persona = persona;
         this.clave = clave;
         this.estado = estado;
+        this.numeroCuentas = 0;
     }
 
     // Getters y Setters
@@ -71,5 +75,13 @@ public class Cliente {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Integer getNumeroCuentas() {
+        return numeroCuentas;
+    }
+
+    public void setNumeroCuentas(Integer numeroCuentas) {
+        this.numeroCuentas = numeroCuentas;
     }
 }

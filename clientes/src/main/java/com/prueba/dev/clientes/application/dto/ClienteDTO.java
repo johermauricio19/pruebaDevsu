@@ -15,10 +15,11 @@ public class ClienteDTO {
     private Long personaId;
     private String clave;
     private String estado;
+    private Integer numeroCuentas;
 
     public ClienteDTO() {}
 
-    public ClienteDTO(Long id, String nombre, String genero, Integer edad, String identificacion, String direccion, String telefono, Long personaId, String clave, String estado) {
+    public ClienteDTO(Long id, String nombre, String genero, Integer edad, String identificacion, String direccion, String telefono, Long personaId, String clave, String estado, Integer numeroCuentas) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;
@@ -29,6 +30,7 @@ public class ClienteDTO {
         this.personaId = personaId;
         this.clave = clave;
         this.estado = estado;
+        this.numeroCuentas = numeroCuentas;
     }
 
     public ClienteDTO(Long personaId, String clave, String estado) {
@@ -115,5 +117,13 @@ public class ClienteDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Integer getNumeroCuentas() {
+        return numeroCuentas;
+    }
+
+    public void setNumeroCuentas(Integer numeroCuentas) {
+        this.numeroCuentas = numeroCuentas;
     }
 }

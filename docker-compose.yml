@@ -34,7 +34,7 @@ services:
       dockerfile: clientes/Dockerfile
     container_name: clientes-service
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pruebadev?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
@@ -53,7 +53,7 @@ services:
       dockerfile: cuentas/Dockerfile
     container_name: cuentas-service
     ports:
-      - "8081:8081"
+      - "8082:8082"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pruebadev?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true

@@ -56,7 +56,8 @@ public class ClienteApplicationService {
                 savedCliente.getPersona().getTelefono(),
                 savedCliente.getPersona().getId(),
                 savedCliente.getClave(),
-                savedCliente.getEstado()
+                savedCliente.getEstado(),
+                savedCliente.getNumeroCuentas()
         );
     }
 
@@ -79,7 +80,8 @@ public class ClienteApplicationService {
                 cliente.getPersona().getTelefono(),
                 cliente.getPersona().getId(),
                 cliente.getClave(),
-                cliente.getEstado()
+                cliente.getEstado(),
+                cliente.getNumeroCuentas()
         );
     }
 
@@ -102,7 +104,8 @@ public class ClienteApplicationService {
                         cliente.getPersona().getTelefono(),
                         cliente.getPersona().getId(),
                         cliente.getClave(),
-                        cliente.getEstado()
+                        cliente.getEstado(),
+                        cliente.getNumeroCuentas()
                 ))
                 .collect(Collectors.toList());
     }
@@ -132,7 +135,8 @@ public class ClienteApplicationService {
                 updatedCliente.getPersona().getTelefono(),
                 updatedCliente.getPersona().getId(),
                 updatedCliente.getClave(),
-                updatedCliente.getEstado()
+                updatedCliente.getEstado(),
+                updatedCliente.getNumeroCuentas()
         );
     }
 

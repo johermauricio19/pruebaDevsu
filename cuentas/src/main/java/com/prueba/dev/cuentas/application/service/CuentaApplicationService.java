@@ -4,10 +4,12 @@ import com.prueba.dev.cuentas.application.dto.request.CuentaRequest;
 import com.prueba.dev.cuentas.application.dto.CuentaDTO;
 import com.prueba.dev.cuentas.application.dto.EstadoCuentaDTO;
 import com.prueba.dev.cuentas.application.dto.MovimientoDTO;
+import com.prueba.dev.cuentas.application.dto.event.CuentaCreadaEvent;
 import com.prueba.dev.cuentas.domain.model.Cuenta;
 import com.prueba.dev.cuentas.domain.service.CuentaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +29,11 @@ public class CuentaApplicationService {
     private static final Logger logger = LoggerFactory.getLogger(CuentaApplicationService.class);
 
     private final CuentaService cuentaService;
+    private final RabbitTemplate rabbitTemplate;
 
-    public CuentaApplicationService(CuentaService cuentaService) {
+    public CuentaApplicationService(CuentaService cuentaService, RabbitTemplate rabbitTemplate) {
         this.cuentaService = cuentaService;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     /**
@@ -51,6 +55,11 @@ public class CuentaApplicationService {
 
         Cuenta savedCuenta = cuentaService.createCuenta(cuenta);
         logger.info("Cuenta creada exitosamente con ID: {}", savedCuenta.getId());
+
+        // Enviar evento asíncrono al microservicio de clientes
+        CuentaCreadaEvent event = new CuentaCreadaEvent(savedCuenta.getClienteId(), savedCuenta.getId(), savedCuenta.getNumeroCuenta());
+        rabbitTemplate.convertAndSend("cliente.exchange", "cliente.routingkey", event);
+        logger.info("Evento de cuenta creada enviado para cliente ID: {}", savedCuenta.getClienteId());
 
         return new CuentaDTO(
                 savedCuenta.getId(),

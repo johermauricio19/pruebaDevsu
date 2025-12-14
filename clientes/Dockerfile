@@ -20,7 +20,7 @@ WORKDIR /app
 COPY --from=build /app/clientes/target/clientes-1.0.0.jar app.jar
 
 # Exponer puerto
-EXPOSE 8080
+EXPOSE 8081
 
 # Comando para ejecutar la aplicación
 CMD ["java", "-jar", "app.jar"]

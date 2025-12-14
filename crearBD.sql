@@ -36,6 +36,7 @@ CREATE TABLE cliente (
     clave VARCHAR(255) NOT NULL,
     estado VARCHAR(20) DEFAULT 'ACTIVO' 
         CHECK (estado IN ('ACTIVO', 'INACTIVO', 'BLOQUEADO')),
+    numero_cuentas INT DEFAULT 0,
 
     FOREIGN KEY (persona_id) REFERENCES persona(persona_id)
 );

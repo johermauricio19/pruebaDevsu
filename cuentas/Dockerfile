@@ -20,7 +20,7 @@ WORKDIR /app
 COPY --from=build /app/cuentas/target/cuentas-1.0.0.jar app.jar
 
 # Exponer puerto
-EXPOSE 8081
+EXPOSE 8082
 
 # Comando para ejecutar la aplicación
 CMD ["java", "-jar", "app.jar"]
