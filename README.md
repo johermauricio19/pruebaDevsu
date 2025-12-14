@@ -39,7 +39,7 @@ Este proyecto implementa dos microservicios en Java que gestionan operaciones CR
 Crear la base de datos MySQL:
 
 ```sql
-CREATE DATABASE prueba_devsu;
+CREATE DATABASE pruebadev;
 ```
 
 Las tablas se crearán automáticamente con JPA (ddl-auto: update).
