@@ -1,11 +1,14 @@
-# Usar imagen base de Maven para construir
-FROM maven:3.9.4-eclipse-temurin-21 AS build
+# Usar imagen base de OpenJDK
+FROM openjdk:11
 
 # Establecer directorio de trabajo
 WORKDIR /app
 
 # Copiar todo el proyecto
 COPY . .
+
+# Instalar Maven
+RUN apt-get update && apt-get install -y maven
 
 # Construir la aplicación
 RUN mvn clean package -DskipTests -pl clientes -am
@@ -23,4 +26,4 @@ COPY --from=build /app/clientes/target/clientes-1.0.0.jar app.jar
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "target/clientes-1.0.0.jar"]
