@@ -1,0 +1,494 @@
+{
+  "info": {
+    "name": "Prueba Devsu - Microservicios",
+    "description": "Colección de Postman para probar los microservicios de Clientes y Cuentas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "clientes_base_url",
+      "value": "http://localhost:8081",
+      "type": "string"
+    },
+    {
+      "key": "cuentas_base_url",
+      "value": "http://localhost:8082",
+      "type": "string"
+    },
+    {
+      "key": "persona_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "cliente_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "cuenta_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "movimiento_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Clientes Service",
+      "item": [
+        {
+          "name": "Personas",
+          "item": [
+            {
+              "name": "Crear Persona",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Juan Pérez\",\n  \"edad\": 30,\n  \"genero\": \"Masculino\",\n  \"identificacion\": \"1234567890\",\n  \"direccion\": \"Calle 123\",\n  \"telefono\": \"555-1234\"\n}"
+                },
+                "url": {
+                  "raw": "{{clientes_base_url}}/personas",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["personas"]
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "if (pm.response.code === 200) {",
+                      "    const response = pm.response.json();",
+                      "    if (response.status && response.message) {",
+                      "        const persona = JSON.parse(response.message);",
+                      "        pm.collectionVariables.set('persona_id', persona.id);",
+                      "        console.log('Persona creada con ID:', persona.id);",
+                      "    }",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Obtener Persona por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{clientes_base_url}}/personas/{{persona_id}}",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["personas", "{{persona_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Listar Todas las Personas",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{clientes_base_url}}/personas",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["personas"]
+                }
+              }
+            },
+            {
+              "name": "Actualizar Persona",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Juan Pérez Actualizado\",\n  \"edad\": 31,\n  \"genero\": \"Masculino\",\n  \"identificacion\": \"1234567890\",\n  \"direccion\": \"Calle 456\",\n  \"telefono\": \"555-5678\"\n}"
+                },
+                "url": {
+                  "raw": "{{clientes_base_url}}/personas/{{persona_id}}",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["personas", "{{persona_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Eliminar Persona",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{clientes_base_url}}/personas/{{persona_id}}",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["personas", "{{persona_id}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Clientes",
+          "item": [
+            {
+              "name": "Crear Cliente",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personaId\": \"{{persona_id}}\",\n  \"clave\": \"password123\",\n  \"estado\": \"ACTIVO\"\n}"
+                },
+                "url": {
+                  "raw": "{{clientes_base_url}}/clientes",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["clientes"]
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "if (pm.response.code === 200) {",
+                      "    const response = pm.response.json();",
+                      "    if (response.status && response.message) {",
+                      "        const cliente = JSON.parse(response.message);",
+                      "        pm.collectionVariables.set('cliente_id', cliente.id);",
+                      "        console.log('Cliente creado con ID:', cliente.id);",
+                      "    }",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Obtener Cliente por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{clientes_base_url}}/clientes/{{cliente_id}}",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["clientes", "{{cliente_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Listar Todos los Clientes",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{clientes_base_url}}/clientes",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["clientes"]
+                }
+              }
+            },
+            {
+              "name": "Actualizar Cliente",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personaId\": \"{{persona_id}}\",\n  \"clave\": \"newpassword123\",\n  \"estado\": \"ACTIVO\"\n}"
+                },
+                "url": {
+                  "raw": "{{clientes_base_url}}/clientes/{{cliente_id}}",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["clientes", "{{cliente_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Eliminar Cliente",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{clientes_base_url}}/clientes/{{cliente_id}}",
+                  "host": ["{{clientes_base_url}}"],
+                  "path": ["clientes", "{{cliente_id}}"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cuentas Service",
+      "item": [
+        {
+          "name": "Cuentas",
+          "item": [
+            {
+              "name": "Crear Cuenta",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clienteId\": \"{{cliente_id}}\",\n  \"numeroCuenta\": \"123456789\",\n  \"tipoCuenta\": \"Ahorros\",\n  \"saldoInicial\": 1000.00,\n  \"estado\": \"ACTIVA\"\n}"
+                },
+                "url": {
+                  "raw": "{{cuentas_base_url}}/cuentas",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["cuentas"]
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "if (pm.response.code === 200) {",
+                      "    const response = pm.response.json();",
+                      "    if (response.status && response.message) {",
+                      "        const cuenta = JSON.parse(response.message);",
+                      "        pm.collectionVariables.set('cuenta_id', cuenta.id);",
+                      "        console.log('Cuenta creada con ID:', cuenta.id);",
+                      "    }",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Obtener Cuenta por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/cuentas/{{cuenta_id}}",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["cuentas", "{{cuenta_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Listar Todas las Cuentas",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/cuentas",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["cuentas"]
+                }
+              }
+            },
+            {
+              "name": "Listar Cuentas por Cliente",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/cuentas/cliente/{{cliente_id}}",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["cuentas", "cliente", "{{cliente_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Actualizar Cuenta",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clienteId\": \"{{cliente_id}}\",\n  \"numeroCuenta\": \"123456789\",\n  \"tipoCuenta\": \"Ahorros\",\n  \"saldoInicial\": 1000.00,\n  \"estado\": \"ACTIVA\"\n}"
+                },
+                "url": {
+                  "raw": "{{cuentas_base_url}}/cuentas/{{cuenta_id}}",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["cuentas", "{{cuenta_id}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Movimientos",
+          "item": [
+            {
+              "name": "Crear Movimiento",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cuentaId\": \"{{cuenta_id}}\",\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 500.00\n}"
+                },
+                "url": {
+                  "raw": "{{cuentas_base_url}}/movimientos",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["movimientos"]
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "if (pm.response.code === 200) {",
+                      "    const response = pm.response.json();",
+                      "    if (response.status && response.message) {",
+                      "        const movimiento = JSON.parse(response.message);",
+                      "        pm.collectionVariables.set('movimiento_id', movimiento.id);",
+                      "        console.log('Movimiento creado con ID:', movimiento.id);",
+                      "    }",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Obtener Movimiento por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/movimientos/{{movimiento_id}}",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["movimientos", "{{movimiento_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Listar Todos los Movimientos",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/movimientos",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["movimientos"]
+                }
+              }
+            },
+            {
+              "name": "Listar Movimientos por Cuenta",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/movimientos/cuenta/{{cuenta_id}}",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["movimientos", "cuenta", "{{cuenta_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Actualizar Movimiento",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cuentaId\": \"{{cuenta_id}}\",\n  \"tipoMovimiento\": \"RETIRO\",\n  \"valor\": 200.00\n}"
+                },
+                "url": {
+                  "raw": "{{cuentas_base_url}}/movimientos/{{movimiento_id}}",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["movimientos", "{{movimiento_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Eliminar Movimiento",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/movimientos/{{movimiento_id}}",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["movimientos", "{{movimiento_id}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Reportes",
+          "item": [
+            {
+              "name": "Generar Reporte de Estado de Cuenta",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/cuentas/reportes?clienteId={{cliente_id}}&fechaInicio=2025-01-01&fechaFin=2025-12-31",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["cuentas", "reportes"],
+                  "query": [
+                    {
+                      "key": "clienteId",
+                      "value": "{{cliente_id}}"
+                    },
+                    {
+                      "key": "fechaInicio",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "fechaFin",
+                      "value": "2025-12-31"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

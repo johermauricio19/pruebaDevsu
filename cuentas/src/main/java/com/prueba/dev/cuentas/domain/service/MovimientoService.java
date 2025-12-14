@@ -1,12 +1,14 @@
 package com.prueba.dev.cuentas.domain.service;
 
 import com.prueba.dev.cuentas.domain.exception.MovimientoNotFoundException;
+import com.prueba.dev.cuentas.domain.exception.SaldoInsuficienteException;
 import com.prueba.dev.cuentas.domain.model.Movimiento;
 import com.prueba.dev.cuentas.domain.port.MovimientoRepositoryPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -19,9 +21,11 @@ public class MovimientoService {
     private static final Logger logger = LoggerFactory.getLogger(MovimientoService.class);
 
     private final MovimientoRepositoryPort movimientoRepository;
+    private final CuentaService cuentaService;
 
-    public MovimientoService(MovimientoRepositoryPort movimientoRepository) {
+    public MovimientoService(MovimientoRepositoryPort movimientoRepository, CuentaService cuentaService) {
         this.movimientoRepository = movimientoRepository;
+        this.cuentaService = cuentaService;
     }
 
     /**
@@ -32,8 +36,29 @@ public class MovimientoService {
     public Movimiento createMovimiento(Movimiento movimiento) {
         logger.info("Creando movimiento para cuenta ID: {}", movimiento.getCuentaId());
 
+        // Calcular el saldo actual antes del movimiento
+        BigDecimal saldoActual = cuentaService.calcularSaldoActual(movimiento.getCuentaId());
+
+        // Verificar saldo suficiente para retiros
+        if (("RETIRO".equals(movimiento.getTipoMovimiento()) || "TRANSFERENCIA".equals(movimiento.getTipoMovimiento()))
+            && saldoActual.compareTo(movimiento.getValor()) < 0) {
+            throw new SaldoInsuficienteException("Saldo no disponible");
+        }
+
+        // Calcular el saldo después del movimiento
+        if ("DEPOSITO".equals(movimiento.getTipoMovimiento())) {
+            saldoActual = saldoActual.add(movimiento.getValor());
+        } else if ("RETIRO".equals(movimiento.getTipoMovimiento()) || "TRANSFERENCIA".equals(movimiento.getTipoMovimiento())) {
+            saldoActual = saldoActual.subtract(movimiento.getValor());
+        }
+        movimiento.setSaldo(saldoActual);
+
         Movimiento savedMovimiento = movimientoRepository.save(movimiento);
         logger.info("Movimiento creado con ID: {}", savedMovimiento.getId());
+
+        // Actualizar el saldo de la cuenta
+        cuentaService.actualizarSaldoCuenta(movimiento.getCuentaId(), saldoActual);
+
         return savedMovimiento;
     }
 
@@ -69,17 +94,23 @@ public class MovimientoService {
 
     /**
      * Actualiza un movimiento existente.
+     * Solo permite actualizar el valor.
      * @param id El ID del movimiento a actualizar.
-     * @param movimiento Los nuevos datos del movimiento.
+     * @param movimiento Los nuevos datos del movimiento (solo valor).
      * @return El movimiento actualizado.
      */
     public Movimiento updateMovimiento(Long id, Movimiento movimiento) {
         logger.info("Actualizando movimiento con ID: {}", id);
 
         Movimiento existingMovimiento = getMovimientoById(id);
-        existingMovimiento.setTipoMovimiento(movimiento.getTipoMovimiento());
         existingMovimiento.setValor(movimiento.getValor());
-        existingMovimiento.setSaldo(movimiento.getSaldo());
+
+        // Recalcular el saldo de la cuenta
+        BigDecimal nuevoSaldo = cuentaService.calcularSaldoActual(existingMovimiento.getCuentaId());
+        cuentaService.actualizarSaldoCuenta(existingMovimiento.getCuentaId(), nuevoSaldo);
+
+        // Actualizar el saldo en el movimiento (aunque no se use directamente)
+        existingMovimiento.setSaldo(nuevoSaldo);
 
         Movimiento updatedMovimiento = movimientoRepository.save(existingMovimiento);
         logger.info("Movimiento actualizado con ID: {}", updatedMovimiento.getId());
@@ -93,11 +124,15 @@ public class MovimientoService {
     public void deleteMovimiento(Long id) {
         logger.info("Eliminando movimiento con ID: {}", id);
 
-        if (!movimientoRepository.existsById(id)) {
-            throw new MovimientoNotFoundException("Movimiento no encontrado con ID: " + id);
-        }
+        Movimiento movimiento = getMovimientoById(id);
+        Long cuentaId = movimiento.getCuentaId();
 
         movimientoRepository.deleteById(id);
+
+        // Recalcular el saldo de la cuenta después de eliminar el movimiento
+        BigDecimal nuevoSaldo = cuentaService.calcularSaldoActual(cuentaId);
+        cuentaService.actualizarSaldoCuenta(cuentaId, nuevoSaldo);
+
         logger.info("Movimiento eliminado con ID: {}", id);
     }
 }

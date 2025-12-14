@@ -5,10 +5,8 @@ services:
     image: mysql:8.0
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: prueba_devsu
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pruebadev
     ports:
       - "3306:3306"
     volumes:
@@ -32,8 +30,8 @@ services:
 
   clientes-service:
     build:
-      context: ./clientes
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: clientes/Dockerfile
     container_name: clientes-service
     ports:
       - "8080:8080"
@@ -51,8 +49,8 @@ services:
 
   cuentas-service:
     build:
-      context: ./cuentas
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: cuentas/Dockerfile
     container_name: cuentas-service
     ports:
       - "8081:8081"
