@@ -456,6 +456,37 @@
               }
             }
           ]
+        },
+        {
+          "name": "Reportes",
+          "item": [
+            {
+              "name": "Generar Reporte de Estado de Cuenta",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{cuentas_base_url}}/cuentas/reportes?clienteId={{cliente_id}}&fechaInicio=2025-01-01&fechaFin=2025-12-31",
+                  "host": ["{{cuentas_base_url}}"],
+                  "path": ["cuentas", "reportes"],
+                  "query": [
+                    {
+                      "key": "clienteId",
+                      "value": "{{cliente_id}}"
+                    },
+                    {
+                      "key": "fechaInicio",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "key": "fechaFin",
+                      "value": "2025-12-31"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
         }
       ]
     }
