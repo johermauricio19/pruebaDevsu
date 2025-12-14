@@ -37,7 +37,7 @@ class ClienteServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        persona = new Persona("Juan", 30, "Masculino", "123456789", "Calle 123", "555-1234", LocalDate.of(1990, 1, 1));
+        persona = new Persona("Juan", 30, "Masculino", "123456789", "Calle 123", "555-1234");
         persona.setId(1L);
         cliente = new Cliente(persona, "password123", "ACTIVO");
         cliente.setId(1L);

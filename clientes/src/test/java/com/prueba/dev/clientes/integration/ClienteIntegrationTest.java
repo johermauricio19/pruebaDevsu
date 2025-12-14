@@ -35,7 +35,7 @@ public class ClienteIntegrationTest {
     @Test
     void testCreateAndGetPersona() throws Exception {
         // Crear persona
-        PersonaDTO personaDTO = new PersonaDTO("Juan", 30, "Masculino", "123456789", "Calle 123", "555-1234", LocalDate.parse("1990-01-01"));
+        PersonaDTO personaDTO = new PersonaDTO("Juan", 30, "Masculino", "123456789", "Calle 123", "555-1234");
 
         MvcResult result = mockMvc.perform(post("/personas")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -59,7 +59,7 @@ public class ClienteIntegrationTest {
     @Test
     void testCreateAndGetCliente() throws Exception {
         // Crear persona primero
-        PersonaDTO personaDTO = new PersonaDTO("Maria", 25, "Femenino", "987654321", "Avenida 456", "555-5678", LocalDate.parse("1995-05-05"));
+        PersonaDTO personaDTO = new PersonaDTO("Maria", 25, "Femenino", "987654321", "Avenida 456", "555-5678");
 
         MvcResult personaResult = mockMvc.perform(post("/personas")
                         .contentType(MediaType.APPLICATION_JSON)

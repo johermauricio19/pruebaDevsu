@@ -31,7 +31,7 @@ class PersonaServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        persona = new Persona("Juan", 30, "Masculino", "123456789", "Calle 123", "555-1234", LocalDate.of(1990, 1, 1));
+        persona = new Persona("Juan", 30, "Masculino", "123456789", "Calle 123", "555-1234");
         persona.setId(1L);
     }
 
@@ -82,7 +82,7 @@ class PersonaServiceTest {
         when(personaRepositoryPort.findById(1L)).thenReturn(Optional.of(persona));
         when(personaRepositoryPort.save(any(Persona.class))).thenReturn(persona);
 
-        Persona updatedPersona = new Persona("Juan Updated", 31, "Masculino", "123456789", "Calle 456", "555-5678", LocalDate.of(1990, 1, 1));
+        Persona updatedPersona = new Persona("Juan Updated", 31, "Masculino", "123456789", "Calle 456", "555-5678");
         Persona result = personaService.updatePersona(1L, updatedPersona);
 
         assertNotNull(result);
