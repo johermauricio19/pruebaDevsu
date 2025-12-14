@@ -165,14 +165,20 @@ public class MovimientoController {
     /**
      * Elimina un movimiento por su ID.
      * @param id El ID del movimiento a eliminar.
-     * @return Respuesta sin contenido.
+     * @return Respuesta de éxito.
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar movimiento", description = "Elimina un movimiento por su ID")
-    public ResponseEntity<Void> deleteMovimiento(@PathVariable Long id) {
+    public ResponseEntity<GenericResponse> deleteMovimiento(@PathVariable Long id) {
         logger.info("Solicitud DELETE para movimiento con ID: {}", id);
-        movimientoApplicationService.deleteMovimiento(id);
-        logger.info("Movimiento eliminado exitosamente con ID: {}", id);
-        return ResponseEntity.noContent().build();
+        try {
+            movimientoApplicationService.deleteMovimiento(id);
+            GenericResponse response = new GenericResponse(true, "Movimiento eliminado exitosamente");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            logger.error("Error al eliminar movimiento: {}", e.getMessage());
+            GenericResponse response = new GenericResponse(false, "Error al eliminar movimiento: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 }

@@ -169,6 +169,39 @@ public class CuentaService {
     }
 
     /**
+     * Calcula el saldo actual de una cuenta basado en sus movimientos.
+     * @param cuentaId El ID de la cuenta.
+     * @return El saldo actual.
+     */
+    public BigDecimal calcularSaldoActual(Long cuentaId) {
+        logger.debug("Calculando saldo actual para cuenta ID: {}", cuentaId);
+        Cuenta cuenta = getCuentaById(cuentaId);
+        BigDecimal saldo = cuenta.getSaldoInicial();
+
+        List<Movimiento> movimientos = movimientoRepository.findByCuentaIdOrderByFechaDesc(cuentaId);
+        for (Movimiento movimiento : movimientos) {
+            if ("DEPOSITO".equals(movimiento.getTipoMovimiento())) {
+                saldo = saldo.add(movimiento.getValor());
+            } else if ("RETIRO".equals(movimiento.getTipoMovimiento()) || "TRANSFERENCIA".equals(movimiento.getTipoMovimiento())) {
+                saldo = saldo.subtract(movimiento.getValor());
+            }
+        }
+        return saldo;
+    }
+
+    /**
+     * Actualiza el saldo de una cuenta.
+     * @param cuentaId El ID de la cuenta.
+     * @param nuevoSaldo El nuevo saldo.
+     */
+    public void actualizarSaldoCuenta(Long cuentaId, BigDecimal nuevoSaldo) {
+        logger.debug("Actualizando saldo de cuenta ID: {} a {}", cuentaId, nuevoSaldo);
+        Cuenta cuenta = getCuentaById(cuentaId);
+        cuenta.setSaldo(nuevoSaldo);
+        cuentaRepository.save(cuenta);
+    }
+
+    /**
      * Genera el estado de cuenta para un cliente en un rango de fechas.
      * @param clienteId El ID del cliente.
      * @param fechaInicio Fecha de inicio del rango.

@@ -119,16 +119,16 @@ public class MovimientoApplicationService {
 
     /**
      * Actualiza un movimiento existente.
+     * Solo permite actualizar el valor, no el tipo de movimiento.
      * @param id El ID del movimiento a actualizar.
-     * @param request La solicitud con los nuevos datos.
+     * @param request La solicitud con los nuevos datos (solo valor).
      * @return El movimiento actualizado.
      */
     public MovimientoDTO updateMovimiento(Long id, MovimientoRequest request) {
         logger.info("Actualizando movimiento con ID: {}", id);
 
         Movimiento movimiento = new Movimiento();
-        movimiento.setTipoMovimiento(request.getTipoMovimiento());
-        movimiento.setValor(request.getValor());
+        movimiento.setValor(request.getValor()); // Solo actualizar valor
 
         Movimiento updatedMovimiento = movimientoService.updateMovimiento(id, movimiento);
         logger.info("Movimiento actualizado exitosamente con ID: {}", updatedMovimiento.getId());
