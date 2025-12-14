@@ -17,7 +17,6 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <artifactId>cuentas</artifactId>
     <name>Cuentas Microservice</name>
     <description>Microservicio para gestión de cuentas y movimientos</description>
 
