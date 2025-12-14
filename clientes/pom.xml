@@ -17,7 +17,6 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <artifactId>clientes</artifactId>
     <name>Clientes Microservice</name>
     <description>Microservicio para gestión de clientes y personas</description>
 

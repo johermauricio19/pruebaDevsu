@@ -6,8 +6,8 @@ Este proyecto implementa dos microservicios en Java que gestionan operaciones CR
 
 ### Microservicios
 
-- **clients-service**: Gestiona operaciones CRUD para personas y clientes. Corre en puerto 8080.
-- **cuentas-service**: Gestiona operaciones CRUD para cuentas y movimientos bancarios. Corre en puerto 8081.
+- **clients-service**: Gestiona operaciones CRUD para personas y clientes. Corre en puerto 8081.
+- **cuentas-service**: Gestiona operaciones CRUD para cuentas y movimientos bancarios. Corre en puerto 8082.
 
 ### Patrón Arquitectónico
 
@@ -63,7 +63,7 @@ Las tablas se crearán automáticamente con JPA (ddl-auto: update).
 
 ## APIs REST
 
-### Clients Service (puerto 8080)
+### Clients Service (puerto 8081)
 
 #### Personas
 - `GET /personas` - Listar todas las personas
@@ -79,7 +79,7 @@ Las tablas se crearán automáticamente con JPA (ddl-auto: update).
 - `PUT /clientes/{id}` - Actualizar cliente
 - `DELETE /clientes/{id}` - Eliminar cliente
 
-### Cuentas Service (puerto 8081)
+### Cuentas Service (puerto 8082)
 
 #### Cuentas
 - `GET /cuentas` - Listar todas las cuentas
@@ -100,8 +100,8 @@ Las tablas se crearán automáticamente con JPA (ddl-auto: update).
 ## Documentación API
 
 Ambos microservicios incluyen documentación OpenAPI/Swagger:
-- Clients: http://localhost:8080/swagger-ui.html
-- Cuentas: http://localhost:8081/swagger-ui.html
+- Clients: http://localhost:8081/swagger-ui.html
+- Cuentas: http://localhost:8082/swagger-ui.html
 
 ## Comunicación Asíncrona
 
@@ -147,8 +147,8 @@ El proyecto incluye configuración completa para despliegue con Docker usando do
    ```
 
 2. Los servicios estarán disponibles en:
-   - Clientes Service: http://localhost:8080
-   - Cuentas Service: http://localhost:8081
+   - Clientes Service: http://localhost:8081
+   - Cuentas Service: http://localhost:8082
    - RabbitMQ Management: http://localhost:15672 (guest/guest)
    - MySQL: localhost:3306
 
