@@ -1,6 +1,7 @@
 package com.prueba.dev.cuentas.domain.service;
 
 import com.prueba.dev.cuentas.domain.exception.MovimientoNotFoundException;
+import com.prueba.dev.cuentas.domain.exception.SaldoInsuficienteException;
 import com.prueba.dev.cuentas.domain.model.Movimiento;
 import com.prueba.dev.cuentas.domain.port.MovimientoRepositoryPort;
 import org.slf4j.Logger;
@@ -35,8 +36,16 @@ public class MovimientoService {
     public Movimiento createMovimiento(Movimiento movimiento) {
         logger.info("Creando movimiento para cuenta ID: {}", movimiento.getCuentaId());
 
-        // Calcular el saldo después del movimiento
+        // Calcular el saldo actual antes del movimiento
         BigDecimal saldoActual = cuentaService.calcularSaldoActual(movimiento.getCuentaId());
+
+        // Verificar saldo suficiente para retiros
+        if (("RETIRO".equals(movimiento.getTipoMovimiento()) || "TRANSFERENCIA".equals(movimiento.getTipoMovimiento()))
+            && saldoActual.compareTo(movimiento.getValor()) < 0) {
+            throw new SaldoInsuficienteException("Saldo no disponible");
+        }
+
+        // Calcular el saldo después del movimiento
         if ("DEPOSITO".equals(movimiento.getTipoMovimiento())) {
             saldoActual = saldoActual.add(movimiento.getValor());
         } else if ("RETIRO".equals(movimiento.getTipoMovimiento()) || "TRANSFERENCIA".equals(movimiento.getTipoMovimiento())) {
