@@ -7,12 +7,12 @@
   "variable": [
     {
       "key": "clientes_base_url",
-      "value": "http://localhost:8080",
+      "value": "http://localhost:8081",
       "type": "string"
     },
     {
       "key": "cuentas_base_url",
-      "value": "http://localhost:8081",
+      "value": "http://localhost:8082",
       "type": "string"
     },
     {
